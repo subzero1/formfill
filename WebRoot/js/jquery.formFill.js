@@ -51,7 +51,7 @@
 						var arrayAtribute;
 						try {
 							if (options.styleElementName == "object") {
-								// Verificando se � um array
+		 						// Verificando se � um array
 								if ($(item).attr("name").match(/\[[0-9]*\]/i)) {
 									objName =$(item).attr("name").replace(/^[a-z]*[0-9]*[a-z]*\./i, 'obj.').replace(/\[[0-9]*\].*/i, "");
 									arrayAtribute = $(item).attr("name").match(/\[[0-9]*\]\.[a-z0-9]*/i) + "";
