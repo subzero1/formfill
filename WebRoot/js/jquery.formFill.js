@@ -53,19 +53,21 @@
 							if (options.styleElementName == "object") {
 								// Verificando se � um array
 								if ($(item).attr("name").match(/\[[0-9]*\]/i)) {
-//									objName =$(item).attr("name").replace(/^[a-z]*[0-9]*[a-z]*\./i, 'obj.').replace(/\[[0-9]*\].*/i, "");
-									objName ='obj.' +$(item).attr("name").replace(/^[a-z]*[0-9]*[a-z]*\./i, 'obj.').replace(/\[[0-9]*\].*/i, "");
+									objName =$(item).attr("name").replace(/^[a-z]*[0-9]*[a-z]*\./i, 'obj.').replace(/\[[0-9]*\].*/i, "");
 									arrayAtribute = $(item).attr("name").match(/\[[0-9]*\]\.[a-z0-9]*/i) + "";
 									arrayAtribute = arrayAtribute.replace(/\[[0-9]*\]\./i, "");
 								} else {
 //									objName = $(item).attr("name").replace(/^[a-z]*[0-9]*[a-z]*\./i, 'obj.');
-									objName = 'obj.' +$(item).attr("name");
+									objName = $(item).attr("name");
 								}
 							} else if (options.styleElementName == "none") {
 								objName = 'obj.' + $(item).attr("name");
 							}
-							var value = eval(objName);
-
+							var value = eval('obj.'+objName);
+							if(value==null){//大小写兼容
+								value = eval('obj.'+objName.toUpperCase());
+								console.log(value);
+							}
 						} catch(e) {
 							if (options.debug) {
 								debug(e.message);
