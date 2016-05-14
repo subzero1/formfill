@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="JS代码,jquery.formfill.js,jQuery,表单填充,json" />
+<meta name="description" content="通过json数据辅助填充表单的jquery插件jquery.formfill.js，更多jquery.formfill.js,jQuery,表单填充,json请访问脚本之家JS代码频道。" />
+<title>通过json数据辅助填充表单的jquery插件jquery.formfill.js_脚本之家</title>
+<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jquery.formFill.js"></script>
+
+		<style type="text/css">
+			a {
+				color: #EA9C00;
+				font: bold 10px verdana;
+				letter-spacing: .9px;
+				text-decoration: none;
+			}
+
+			a:hover {
+				color: #DC5;
+				font: bold 10px verdana;
+				letter-spacing: .9px;
+				text-decoration: underline;
+			}
+
+			div.description {
+				font: 10px verdana;
+				color: #555;
+				letter-spacing: .1px;
+				margin-bottom: 10px;
+				text-indent: 7px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div#link {
+				font: 10px verdana;
+				color: #AB9927;
+				text-indent: 7px;
+			}
+
+			div.notice {
+				font: 9px verdana;
+				color: #777;
+				letter-spacing: .1px;
+				margin-bottom: 10px;
+				text-indent: 7px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div.session {
+				font: bold 13px verdana;
+				border-bottom: 1px solid #EFEFEF;
+				color: #444;
+				letter-spacing: .7px;
+				margin-bottom: 10px;
+				margin-top: 24px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div.source {
+				background: #F8F8FF;
+				border: 1px solid #EFEFEF;
+				border-left: 3px solid #CCC;
+				color: #444;
+				font: 12px monospace;
+				letter-spacing: .1px;
+				margin-bottom: 7px;
+				margin-top: 5px;
+				padding: 7px;
+				width: 99%;
+			}
+
+			div.titulo {
+				font: bold 17px verdana;
+				color: #269;
+				letter-spacing: .7px;
+				margin-bottom: 20px;
+				margin-top: 5px;
+				text-align: left;
+				width: 99%;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$.fill.setDefaults({debug: true});
+			$(function() {
+				
+				$("#date1").datepicker({
+				       dateFormat: 'mm/dd/yy',
+				       changeMonth: true,
+				       changeYear: true
+				});
+				
+				$("#date2").datepicker({
+				       dateFormat: 'mm/dd/yy',
+				       changeMonth: true,
+				       changeYear: true
+				});
+
+			   	$("#btnExample1").click(function() {					
+					var user = {"name" : "Makoto Hashimoto",
+								"email" : "makoto@makoto.blog.br",
+								"phone" : {
+									"codeArea" : "+55",
+									"number" : "2755555555"
+								},
+								"date1": "03/30/1981",
+								"date2": "354769200000",  // 1981-03-30 in milliseconds 
+								"gender" : "M",
+								"admin" : "Y",
+								"rules" : [
+									{"id" : "1", "name": "Admin"},
+									{"id" : "3", "name": "Developer"}
+								]
+					};
+					$("#form1").fill(user);
+				});
+			});
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-16009543-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div class="titulo">jQuery Form Fill Plugin</div>
+
+		<div id="link">
+			| <a href="http://github.com/makotohashimoto/formFill/archives/master" target="_blank">Download</a> |
+			<a href="http://github.com/makotohashimoto/formFill" target="_blank">Github</a> |
+		</div>
+		
+		
+		<div class="session">Overview</div>
+		<div id="fixed"></div>
+		
+		<div class="description">
+			The"jQuery Form Fill" fills forms from JSON objects.
+			<ul>
+				<li>
+					Fills all kinds of html elements:
+					<ul>
+						<li>text</li>
+						<li>password</li>
+						<li>hidden</li>
+						<li>textarea</li>
+						<li>checkbox</li>
+						<li>radio</li>
+						<li>select</li>
+					</ul>
+				</li>
+				<li>
+					Fills fields with jQueryUI Datepicker.
+					<ul>
+						<li>Date in string format. Ex: "MM/DD/YYYY"</li>
+						<li>Date in milliseconds</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="session">Quick Start Guide</div>
+		<div id="fixed"></div>
+		
+		<div id="divForm1" class="description">
+			<form id="form1">
+				<label>Nome:</label>
+				<input type="text" name="name" />
+				<br /><br />
+				
+				<label>E-mail:</label>
+				<input type="text" name="email" />
+				<br /><br />
+				
+				<label>Phone:</label>
+				<input type="text" name="phone.codeArea" size="3" maxlength="3" />
+				<input type="text" name="phone.number" size="11" maxlength="10" />
+				<br /><br />
+				
+				<label>Date:</label>
+				<input type="text" name="date1" id="date1" /> from string (mm/dd/yyyy, mm-dd-yyyy, yyyy-mm-dd or yyyy/mm/dd)
+				<br /><br />
+				
+				<label>Date 2:</label>
+				<input type="text" name="date2" id="date2"/> from milliseconds
+				<br /><br />
+				
+				<label>Gender:</label>
+				<select name="gender">
+					<option>--select--</option>
+					<option value="F">Female</option>
+					<option value="M">Male</option>
+				</select>
+				<br /><br />
+				
+				<label>Is Administrator?</label>
+				<!--input type="checkbox" name="admin" value="Y" -->
+				
+				<input type="radio" name="admin" value="Y"> Yes
+				<input type="radio" name="admin" value="N"> No
+				<br /><br />
+				
+				<label>Rules:</label>
+				
+				<input type="checkbox" name="rules[0].id" value="1" /> Admin<br />
+				<input type="checkbox" name="rules[1].id" value="2" /> User<br />
+				<input type="checkbox" name="rules[2].id" value="3" /> Developer
+				<br /><br />
+				
+				<input type="button" id="btnExample1" value="Fill" />
+				<input type="reset" value="Reset" />
+			</form>
+			
+		</div>
+
+		<div class="source">
+			$("#btnExample1").click(function() { <br />					
+			&nbsp;&nbsp;var user = {<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"name" : "Makoto Hashimoto",<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"email" : "makoto@makoto.blog.br",<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"phone" : {<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"codeArea" : "+55",<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number" : "2755555555"<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;},<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"date1": "03/30/1981",    // (mm/dd/yyyy)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"date2": "354769200000",  // 1981-03-30 in milliseconds<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"gender" : "M"<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"admin" : "Y",<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;"rules" : [<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id" : "1", "name": "Admin"},<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id" : "3", "name": "Developer"}<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;]<br />
+			&nbsp;&nbsp;};<br />
+			&nbsp;&nbsp;$("#form1").fill(user);<br />
+				});
+		</div>
+
+
+<div style="text-align:center;clear:both">
+<p>来源：<a href="http://www.jb51.net" target="_blank">makoto</a>　代码整理：<a href="http://www.jb51.net" target="_blank">脚本之家</a>　感谢：<a href="http://www.jb51.net" target="_blank">luoke</a></p>
+<p>转载请注明出处，此代码仅供学习交流，请勿用于商业用途。</p>
+</div>
+</body>
+</html>
